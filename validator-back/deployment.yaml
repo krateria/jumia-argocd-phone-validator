@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: validator-back
+  labels:
+    app: validator-back
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: validator-back
+  template:
+    metadata:
+      labels:
+        app: validator-back
+    spec:
+      containers:
+      - name: validator-back
+        image: nginx:1.23
+        imagePullPolicy: Always
+        limits:
+        ports:
+        - containerPort: 80
+        env:
+        - name: API_PORT
+          value: "3000"
+        - name: MONGODB_HOST
+          value: "10.2.1.38"
+        - name: MONGODB_PORT
+          value: "27017"
+        - name: MONGODB_DATABASE
+          value: "camelo"
+        - name: configclient_api_url
+          value: "http://service-camelo-config-api.poplifty-private.svc.cluster.local:3000"
+      # imagePullSecrets:
+      # - name: registry-nowhereworks

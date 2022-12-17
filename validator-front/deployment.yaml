@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: validator-front
+  labels:
+    app: validator-front
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: validator-front
+  template:
+    metadata:
+      labels:
+        app: validator-front
+    spec:
+      containers:
+      - name: validator-front
+        image: nginx
+        imagePullPolicy: Always
+        limits:
+        ports:
+        - containerPort: 80
+        env:
+        - name: API_PORT
+          value: "3000"
+        - name: MONGODB_HOST
+          value: "10.2.1.38"
+      # imagePullSecrets:
+      # - name: registry-nowhereworks
