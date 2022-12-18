@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: validator-front
-        image: 992122884453.dkr.ecr.eu-west-1.amazonaws.com/jumia-phone-validator-front:xxx
+        image: 992122884453.dkr.ecr.eu-west-1.amazonaws.com/jumia-phone-validator-front:172c058
         imagePullPolicy: Always
         limits:
         ports:
