@@ -14,7 +14,7 @@ pipeline {
                         sh "git config --global user.name 'Deploy user'"
                         sh "git add ${params.REPO}/deployment.yaml"
                         sh "git commit -m 'Bump da imagem do ${params.REPO} para ${params.GIT_SHA}'"
-                        sh "git push"
+                        sh "git push origin HEAD:master"
                     }
                 // }
             }
