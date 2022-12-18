@@ -8,7 +8,9 @@ pipeline {
                 echo "Debug '${params.REPO}' '${params.GIT_SHA}'"
                 sh "sed -i 's/${params.IMAGE}:[a-z0-9].*/${params.IMAGE}:${GIT_SHA}/g' ${params.REPO}/deployment.yaml"
 
-                withCredentials([sshUserPrivateKey(credentialsId: 'dff856f6-0924-4762-9244-021212f21ca5')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: 'dff856f6-0924-4762-9244-021212f21ca5', keyFileVariable: "SSH_KEY")]) {
+                    sh "git config --global user.email 'deploy@example.com'"
+                    sh "git config --global user.name 'Deploy user'"
                     sh "git add ${params.REPO}/deployment.yaml"
                     sh "git commit -m 'Bump da imagem do ${params.REPO} para ${params.GIT_SHA}'"
                     sh "git push origin HEAD:master"
