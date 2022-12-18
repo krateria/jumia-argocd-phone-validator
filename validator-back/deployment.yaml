@@ -21,3 +21,6 @@ spec:
         limits:
         ports:
         - containerPort: 8080
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: "xxx"
