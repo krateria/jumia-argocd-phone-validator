@@ -27,4 +27,4 @@ spec:
         - name: SPRING_DATASOURCE_USERNAME
           value: "appdbuser"
         - name: SPRING_DATASOURCE_PASSWORD
-          value: $PASS
+          value: '{{PASS}}'
