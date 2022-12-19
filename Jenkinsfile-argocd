@@ -7,6 +7,10 @@ pipeline {
             steps {
                 echo "Debug '${params.REPO}' '${params.GIT_SHA}'"
 
+                withCredentials([usernameColonPassword(credentialsId: 'postgres', variable: 'USERPASS')]) {
+                    sh "psql postgresql://${USERPASS}@${env.DB_HOST}:5432/${env.DB_NAME} < sample.sql"
+                }
+
                 // withCredentials([sshUserPrivateKey(credentialsId: 'dff856f6-0924-4762-9244-021212f21ca5', keyFileVariable: "SSH_KEY")]) {
                     sshagent(['dff856f6-0924-4762-9244-021212f21ca5']) {
                         sh "git checkout master"
