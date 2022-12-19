@@ -23,7 +23,7 @@ spec:
         - containerPort: 8080
         env:
         - name: SPRING_DATASOURCE_URL
-          value: "terraform-20221217194338834300000005.cesxoczwd6mw.eu-west-1.rds.amazonaws.com"
+          value: "jdbc:postgresql://terraform-20221217194338834300000005.cesxoczwd6mw.eu-west-1.rds.amazonaws.com:5432/postgres"
         - name: SPRING_DATASOURCE_USERNAME
           value: "appdbuser"
         - name: SPRING_DATASOURCE_PASSWORD
